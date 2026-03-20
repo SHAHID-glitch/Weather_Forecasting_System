@@ -86,11 +86,14 @@ app.use('/api', (req, res) => {
 // Error handling middleware
 app.use(errorHandler);
 
-// Start server
-app.listen(PORT, () => {
-  logger.info(`Weather Forecasting API server running on port ${PORT}`);
-  logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
-  logger.info(`API Version: ${API_VERSION}`);
-});
+// Start server only when running locally.
+// In Vercel serverless, this file is imported and the runtime handles requests.
+if (require.main === module) {
+  app.listen(PORT, () => {
+    logger.info(`Weather Forecasting API server running on port ${PORT}`);
+    logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
+    logger.info(`API Version: ${API_VERSION}`);
+  });
+}
 
 module.exports = app;

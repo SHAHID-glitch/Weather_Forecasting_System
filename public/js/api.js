@@ -5,8 +5,8 @@
 
 class WeatherAPI {
     constructor() {
-        // Use the same port as the backend server
-        this.baseURL = 'http://localhost:3000/api/v1';
+        // Use same-origin API path to support local and deployed environments.
+        this.baseURL = '/api/v1';
         this.timeout = 10000; // 10 seconds
     }
 
@@ -106,7 +106,7 @@ class WeatherAPI {
      */
     async checkHealth() {
         try {
-            const response = await fetch('http://localhost:3000/health');
+            const response = await fetch('/health');
             return response.ok;
         } catch {
             return false;

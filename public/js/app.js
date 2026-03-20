@@ -69,7 +69,7 @@ class WeatherApp {
     async checkAPIHealth() {
         const healthy = await weatherAPI.checkHealth();
         if (!healthy) {
-            uiManager.showError('Cannot connect to weather API. Please ensure the server is running on http://localhost:3000');
+            uiManager.showError('Cannot connect to weather API. Please try again in a moment.');
         }
     }
 
